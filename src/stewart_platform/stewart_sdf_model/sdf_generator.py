@@ -18,6 +18,35 @@ class CreateRobotSDF():
         plugin_tag.setAttribute('filename',filename)
         self.model_tag.appendChild(plugin_tag)
 
+    def add_glue(self, model_name, parent, child):
+        plugin_tag = self.root.createElement("plugin")
+        plugin_tag.setAttribute('filename',"libgz-sim-detachable-joint-system.so" )
+        plugin_tag.setAttribute('name',"gz::sim::systems::DetachableJoint")
+
+        parent_tag = self.root.createElement('parent_link')
+        parent_text = self.root.createTextNode(parent)
+        plugin_tag.appendChild(parent_tag)
+        parent_tag.appendChild(parent_text)
+
+        child_tag = self.root.createElement('child_link')
+        child_text = self.root.createTextNode(child)
+        plugin_tag.appendChild(child_tag)
+        child_tag.appendChild(child_text)
+
+        model_tag = self.root.createElement('child_model')
+        model_text = self.root.createTextNode(model_name)
+        plugin_tag.appendChild(model_tag)
+        model_tag.appendChild(model_text)
+
+        self.model_tag.appendChild(plugin_tag)
+        
+    """<plugin filename="libgz-sim-detachable-joint-system.so" name="gz::sim::systems::DetachableJoint">
+      <parent_link>piston3_topL</parent_link>
+      <child_link>piston3_topU</child_link>
+      <child_model>stewart_platform</child_model> 
+      <!--<attach_topic>close_loop</attach_topic>-->
+    </plugin>"""
+
 
     def add_joint(self,name, type, parent, child,pose , axis_xyz, axis_limit_lower_param=False,axis_limit_upper_param=False, axis_limit_velocity_param=False, axis_limit_effort_param=False, axis_dynamics_damping_param=False, axis_name="axis", axis_name_2=False, axis_name_2_xyz=False):
         joint_tag = self.root.createElement("joint")
@@ -41,12 +70,13 @@ class CreateRobotSDF():
         joint_tag.appendChild(pose_tag)
         pose_tag.appendChild(pose_text_node)
 
-        self._add_axis(xyz_param=axis_xyz, limit_lower_param = axis_limit_lower_param, limit_upper_param=axis_limit_upper_param, limit_velocity_param=axis_limit_velocity_param,limit_effort_param=axis_limit_effort_param, dynamics_damping_param = axis_dynamics_damping_param, axis_name=axis_name )
-        joint_tag.appendChild(self.axis_tag)
-
-        if axis_name_2 and axis_name_2_xyz:
-            self._add_axis(xyz_param=axis_name_2_xyz, limit_lower_param = axis_limit_lower_param, limit_upper_param=axis_limit_upper_param, limit_velocity_param=axis_limit_velocity_param,limit_effort_param=axis_limit_effort_param, dynamics_damping_param = axis_dynamics_damping_param, axis_name=axis_name_2 )
+        if type != "ball":
+            self._add_axis(xyz_param=axis_xyz, limit_lower_param = axis_limit_lower_param, limit_upper_param=axis_limit_upper_param, limit_velocity_param=axis_limit_velocity_param,limit_effort_param=axis_limit_effort_param, dynamics_damping_param = axis_dynamics_damping_param, axis_name=axis_name )
             joint_tag.appendChild(self.axis_tag)
+
+            if axis_name_2 and axis_name_2_xyz:
+                self._add_axis(xyz_param=axis_name_2_xyz, limit_lower_param = axis_limit_lower_param, limit_upper_param=axis_limit_upper_param, limit_velocity_param=axis_limit_velocity_param,limit_effort_param=axis_limit_effort_param, dynamics_damping_param = axis_dynamics_damping_param, axis_name=axis_name_2 )
+                joint_tag.appendChild(self.axis_tag)
 
 
 

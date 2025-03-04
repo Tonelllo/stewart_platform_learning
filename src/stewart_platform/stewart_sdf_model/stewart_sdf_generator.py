@@ -39,7 +39,7 @@ Initialize stewart platform model and add control plugin
 # Creat model object 
 stewart_model = CreateRobotSDF()
 # add plugin
-stewart_model.add_plugin("joint_controller", "libjoint_controller.so")
+# stewart_model.add_plugin("joint_controller", "libjoint_controller.so")
 
 """
 First, Define all Joints:
@@ -58,8 +58,8 @@ p_p_joint_day_damping = str(3)
 p_p_joint_axis_lower_limit = "0.1"
 p_p_joint_axis_upper_limit = str(0.8*piston_length)
 
-for i in range(1,7):
-    stewart_model.add_joint(f"piston{i}_prismatic_joint",'prismatic' ,f"piston{i}_cylinder_link", f"piston{i}_shaft_link", pose="0 0 0 0 0 0", axis_xyz="0 0 1", axis_limit_lower_param=p_p_joint_axis_lower_limit,axis_limit_upper_param=p_p_joint_axis_upper_limit,axis_limit_velocity_param=p_p_joint_vel_limit,axis_limit_effort_param=p_p_joint_eff_limit,axis_dynamics_damping_param=p_p_joint_day_damping)
+for i in range(1,7): # parent, child
+    stewart_model.add_joint(f"piston{i}_prismatic_joint",'prismatic' ,f"piston{i}_cylinder_link", f"piston{i}_shaft_linkL", pose="0 0 0 0 0 0", axis_xyz="0 0 1", axis_limit_lower_param=p_p_joint_axis_lower_limit,axis_limit_upper_param=p_p_joint_axis_upper_limit,axis_limit_velocity_param=p_p_joint_vel_limit,axis_limit_effort_param=p_p_joint_eff_limit,axis_dynamics_damping_param=p_p_joint_day_damping)
 
 # define all joints movement limit 
 lower_limit_angle = str(math.radians(-30)) # -30 degree
@@ -75,7 +75,7 @@ for i in range(1,7):
 piston_bottom_pose = "0 0 "+str(-0.5*piston_length)+" 0 0 0"
 
 for i in range(1,7):
-    stewart_model.add_joint(f"piston{i}_bottom_pitch_joint","revolute2",f"bottom_ball{i}_link",f"piston{i}_cylinder_link",pose=piston_bottom_pose, axis_xyz="1 0 0", axis_limit_lower_param=lower_limit_angle,axis_limit_upper_param=upper_limit_angle)
+    stewart_model.add_joint(f"piston{i}_bottom_pitch_joint","ball",f"bottom_ball{i}_link",f"piston{i}_cylinder_link",pose=piston_bottom_pose, axis_xyz="1 0 0")
 
 
 # define top ball joints
@@ -87,7 +87,7 @@ for i in range(1,7):
 piston_top_pose = "0 0 " + str(0.5*piston_length) +" 0 0 0"
 
 for i in range(1,7):
-    stewart_model.add_joint(f"piston{i}_top_pitch_joint","universal",f"top_ball{i}_link",f"piston{i}_shaft_link",pose=piston_top_pose, axis_xyz="1 0 0", axis_limit_lower_param=lower_limit_angle,axis_limit_upper_param=upper_limit_angle)
+    stewart_model.add_joint(f"piston{i}_top_pitch_joint","universal",f"top_ball{i}_link",f"piston{i}_shaft_linkU",pose=piston_top_pose, axis_xyz="1 0 0", axis_limit_lower_param=lower_limit_angle,axis_limit_upper_param=upper_limit_angle)
 
 
 
@@ -130,7 +130,15 @@ for i in range(1,7):
 # note: piston shaft pose is equal to piston cylinder link pose
 
 for i in range(1,7):
-    stewart_model.add_link(f"piston{i}_shaft_link", piston_cylinder_link_pose[f"piston{i}_link_pose"],geometry='cylinder', mass=0.1,radius=0.5*piston_radius,length=piston_length,material_script_uri_param="file://media/materials/scripts/gazebo.material",material_script_name_param="Gazebo/Black")
+    stewart_model.add_link(f"piston{i}_shaft_linkU", piston_cylinder_link_pose[f"piston{i}_link_pose"],geometry='cylinder', mass=0.1,radius=0.5*piston_radius,length=piston_length,material_script_uri_param="file://media/materials/scripts/gazebo.material",material_script_name_param="Gazebo/Black")
+
+for i in range(1,7):
+    stewart_model.add_link(f"piston{i}_shaft_linkL", piston_cylinder_link_pose[f"piston{i}_link_pose"],geometry='cylinder', mass=0.1,radius=0.5*piston_radius,length=piston_length,material_script_uri_param="file://media/materials/scripts/gazebo.material",material_script_name_param="Gazebo/Black")
+
+
+for i in range(1,7):
+    stewart_model.add_glue("stewart", f"piston{i}_shaft_linkL", f"piston{i}_shaft_linkU")
+
 
 
 # finally, save the model in sdf format
