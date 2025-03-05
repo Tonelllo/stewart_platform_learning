@@ -4,32 +4,31 @@ import math
 from piston_balls_pose import balls_link_pose,  piston_link_pose
 
 # Define base platform parameters
-base_height = 0.125
-base_radius = 2.0   
-base_mass = 1000.0
+base_height = 0.015
+base_radius = 0.1   
+base_mass = 0.1
 
 # Define top platform parameters
-platform_height = 0.1  
-platform_radius =  0.8*base_radius 
+platform_height = 0.015  
+platform_radius =  1.0*base_radius 
 platform_mass = 0.1 
 
 # Define top and bottom balls parameters 
-ball_radius = 0.1
-platform_balls_radius = 0.05
+ball_radius = 0.01
+platform_balls_radius = 0.01
 
 # Define attachment angles between balls of base and moiving platform
-attachment_angle_top = 30   
-attachment_angle_bottom = 60
+attachment_angle_top = 10   
+attachment_angle_bottom = 110
 
 # Define distance between base and moving platform
-base_platform_distance = 2
+base_platform_distance = 0.25
 base_plat_dis = base_platform_distance  - 0.5*base_height - 0.5*platform_height - platform_balls_radius -ball_radius
-
 
 
 # Now define piston (cylinder and shaft) radius , length and pose based on the above parameters
 piston_radius = 0.5*ball_radius
-piston_cylinder_link_pose , piston_length = piston_link_pose(base_radius, platform_radius,attachment_angle_bottom,attachment_angle_top,base_plat_dis,ball_radius) 
+piston_cylinder_link_pose , piston_length = piston_link_pose(radi_b=base_radius,radi_p=platform_radius,theta_b=attachment_angle_bottom,theta_p=attachment_angle_top,base_platform_distance=base_plat_dis,base_height=base_height, ball_radius=ball_radius) 
 
 
 
@@ -55,8 +54,8 @@ First, Define all Joints:
 p_p_joint_vel_limit = str(1)
 p_p_joint_eff_limit = str(500)
 p_p_joint_day_damping = str(3)
-p_p_joint_axis_lower_limit = "0.1"
-p_p_joint_axis_upper_limit = str(0.8*piston_length)
+p_p_joint_axis_lower_limit = "0.0"
+p_p_joint_axis_upper_limit = str(0.14)
 
 for i in range(1,7): # parent, child
     stewart_model.add_joint(f"piston{i}_prismatic_joint",'prismatic' ,f"piston{i}_cylinder_link", f"piston{i}_shaft_linkL", pose="0 0 0 0 0 0", axis_xyz="0 0 1", axis_limit_lower_param=p_p_joint_axis_lower_limit,axis_limit_upper_param=p_p_joint_axis_upper_limit,axis_limit_velocity_param=p_p_joint_vel_limit,axis_limit_effort_param=p_p_joint_eff_limit,axis_dynamics_damping_param=p_p_joint_day_damping)
@@ -139,7 +138,8 @@ for i in range(1,7):
 for i in range(1,7):
     stewart_model.add_glue("stewart", f"piston{i}_shaft_linkL", f"piston{i}_shaft_linkU")
 
-
+for i in range(1,7):
+    stewart_model.add_control(f"piston{i}_prismatic_joint", str(100), str(10), str(100))
 
 # finally, save the model in sdf format
 stewart_model.save_model("stewart_sdf")

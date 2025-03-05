@@ -56,10 +56,6 @@ def piston_link_pose(radi_b,radi_p,theta_b,theta_p, base_platform_distance, base
     base_balls_link_poses ,_= balls_link_pose(radi_b, theta_b,0,0)
     platform_balls_link_poses,_ = balls_link_pose(radi_p, theta_p,0,0)
 
-    radi_b -= 0.1*radi_b
-    radi_p -= 0.1*radi_p
-
-
     pistons_link_pose = {}
 
     for i in range(1,7):
@@ -74,7 +70,6 @@ def piston_link_pose(radi_b,radi_p,theta_b,theta_p, base_platform_distance, base
         pitch_piston_i  = math.radians(90) - math.atan2(base_platform_distance,piston_length_i_proj)  
 
         pistons_link_pose[f'piston{i}_link_pose'] = [1/2*(x_p_i+x_b_i), 1/2*(y_p_i+y_b_i), base_height+ ball_radius + base_platform_distance/2, 0 , pitch_piston_i , yaw_piston_i ]  
-    
     pistons_link_pose = {k: ' '.join(map(str, list(v))) for (k,v) in pistons_link_pose.items()}
 
 
@@ -100,14 +95,12 @@ def attachment_points_position(radi, theta, height):
 
 if __name__=="__main__":
 
-    Tetha_angle = 60
-    BASE_RADIUS = 2
-    height = 2
-    pitch_angle = 80
+    Tetha_angle = 110
+    BASE_RADIUS = 0.1
+    height = 0.25
 
-
-    platform_radius = 1.5
-    teta_plat = 30
+    platform_radius = 0.1
+    teta_plat = 10
 
 
     dist_plat_base = 2

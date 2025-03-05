@@ -39,12 +39,46 @@ class CreateRobotSDF():
         model_tag.appendChild(model_text)
 
         self.model_tag.appendChild(plugin_tag)
+
+    def add_control(self, joint_name, p_gain, i_gain, d_gain):
+        plugin_tag = self.root.createElement("plugin")
+        plugin_tag.setAttribute('filename',"gz-sim-joint-position-controller-system" )
+        plugin_tag.setAttribute('name',"gz::sim::systems::JointPositionController")
+
+        joint_name_tag = self.root.createElement('joint_name')
+        joint_name_text = self.root.createTextNode(joint_name)
+        joint_name_tag.appendChild(joint_name_text)
+        plugin_tag.appendChild(joint_name_tag)
+
+        p_gain_tag = self.root.createElement('p_gain')
+        p_gain_text = self.root.createTextNode(p_gain)
+        p_gain_tag.appendChild(p_gain_text)
+        plugin_tag.appendChild(p_gain_tag)
+
+        i_gain_tag = self.root.createElement('i_gain')
+        i_gain_text = self.root.createTextNode(i_gain)
+        i_gain_tag.appendChild(i_gain_text)
+        plugin_tag.appendChild(i_gain_tag)
+
+        d_gain_tag = self.root.createElement('d_gain')
+        d_gain_text = self.root.createTextNode(d_gain)
+        d_gain_tag.appendChild(d_gain_text)
+        plugin_tag.appendChild(d_gain_tag)
         
-    """<plugin filename="libgz-sim-detachable-joint-system.so" name="gz::sim::systems::DetachableJoint">
-      <parent_link>piston3_topL</parent_link>
-      <child_link>piston3_topU</child_link>
-      <child_model>stewart_platform</child_model> 
-      <!--<attach_topic>close_loop</attach_topic>-->
+        self.model_tag.appendChild(plugin_tag)
+
+        
+    """<plugin
+     filename="gz-sim-joint-position-controller-system"
+     name="gz::sim::systems::JointPositionController">
+     <joint_name>base_to_intermediate</joint_name>
+     <p_gain>100</p_gain>
+     <i_gain>10</i_gain>
+     <d_gain>100</d_gain>
+     <!--<i_max>1</i_max>-->
+     <!--<i_min>-1</i_min>-->
+     <!--<cmd_max>100</cmd_max>-->
+     <!--<cmd_min>-100</cmd_min>-->
     </plugin>"""
 
 
