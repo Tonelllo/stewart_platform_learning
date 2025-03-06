@@ -121,7 +121,7 @@ class CreateRobotSDF():
         # create axis main elements
         xyz_tag = self.root.createElement("xyz")
         limit_tag = self.root.createElement("limit")
-        dynamics_tag = self.root.createElement("dynamics")
+        # dynamics_tag = self.root.createElement("dynamics")
 
         # xyz related tag definition
         xyz_text_node = self.root.createTextNode(xyz_param) 
@@ -129,7 +129,7 @@ class CreateRobotSDF():
 
         self.axis_tag.appendChild(xyz_tag)
         self.axis_tag.appendChild(limit_tag)
-        self.axis_tag.appendChild(dynamics_tag)
+        # self.axis_tag.appendChild(dynamics_tag)
 
         # limit related tags definition
         limit_lower_tag = self.root.createElement("lower")
@@ -158,11 +158,11 @@ class CreateRobotSDF():
         limit_tag.appendChild(limit_effort_tag)
 
         # dynamics related tags definition
-        dynamics_damping_tag = self.root.createElement("damping")
-        if dynamics_damping_param:
-            dynamics_damping_node = self.root.createTextNode(dynamics_damping_param) 
-            dynamics_damping_tag.appendChild(dynamics_damping_node)
-        dynamics_tag.appendChild(dynamics_damping_tag)
+        # dynamics_damping_tag = self.root.createElement("damping")
+        # if dynamics_damping_param:
+        #     dynamics_damping_node = self.root.createTextNode(dynamics_damping_param) 
+        #     dynamics_damping_tag.appendChild(dynamics_damping_node)
+        # dynamics_tag.appendChild(dynamics_damping_tag)
 
 
     def add_link(self, name, pose, geometry,mass, radius, length,material_script_uri_param,material_script_name_param):
@@ -175,16 +175,16 @@ class CreateRobotSDF():
         pose_tag.appendChild(pose_text_node)
         link_tag.appendChild(pose_tag)
 
-        self._add_inertial(geometry=geometry,mass=mass, radius=radius, length=length)
-        link_tag.appendChild(self.inertial_tag)
+        # self._add_inertial(geometry=geometry,mass=mass, radius=radius, length=length)
+        # link_tag.appendChild(self.inertial_tag)
 
 
         self._add_visual(visual_name= name+"_visual", geometry=geometry,radius=radius, length=length, material_script_uri_param=material_script_uri_param,material_script_name_param=material_script_name_param)
         link_tag.appendChild(self.visual_tag)
 
-
-        self._add_collision(name+"_collision", geometry=geometry,radius=radius, length=length)
-        link_tag.appendChild(self.collistion_tag)
+        if "base" in name or "platform" in name:
+            self._add_collision(name+"_collision", geometry=geometry,radius=radius, length=length)
+            link_tag.appendChild(self.collistion_tag)
 
 
 
