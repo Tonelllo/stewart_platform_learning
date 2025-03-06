@@ -139,7 +139,7 @@ for i in range(1,7):
     stewart_model.add_glue("stewart", f"piston{i}_shaft_linkL", f"piston{i}_shaft_linkU")
 
 for i in range(1,7):
-    stewart_model.add_control(f"piston{i}_prismatic_joint", str(100), str(10), str(100))
+    stewart_model.add_control(f"piston{i}_prismatic_joint", str(500), str(30), str(100))
 
 # finally, save the model in sdf format
 stewart_model.save_model("stewart_sdf")
