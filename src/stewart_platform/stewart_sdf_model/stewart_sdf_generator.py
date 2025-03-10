@@ -5,16 +5,16 @@ from piston_balls_pose import balls_link_pose,  piston_link_pose
 
 # Define base platform parameters
 base_height = 0.015
-base_radius = 0.1   
+base_radius = 0.103   
 base_mass = 0.01
 
 # Define top platform parameters
 platform_height = 0.015  
-platform_radius =  1.0*base_radius 
+platform_radius = 0.0965
 platform_mass = 0.01 
 
 # Define top and bottom balls parameters 
-ball_radius = 0.01
+ball_radius = 0.018
 platform_balls_radius = 0.01
 
 # Define attachment angles between balls of base and moiving platform
@@ -131,6 +131,14 @@ for i in range(1,7):
 for i in range(1,7):
     if i == 1:
         stewart_model.add_link(f"piston{i}_cylinder_link",piston_cylinder_link_pose[f"piston{i}_link_pose"],geometry='cylinder', mass=0.7,radius=piston_radius,length=piston_length,material_script_uri_param="file://media/materials/scripts/gazebo.material",material_script_name_param="Gazebo/Red")
+    elif i == 2:
+        stewart_model.add_link(f"piston{i}_cylinder_link",piston_cylinder_link_pose[f"piston{i}_link_pose"],geometry='cylinder', mass=0.7,radius=piston_radius,length=piston_length,material_script_uri_param="file://media/materials/scripts/gazebo.material",material_script_name_param="Gazebo/Green")
+    elif i == 3:
+        stewart_model.add_link(f"piston{i}_cylinder_link",piston_cylinder_link_pose[f"piston{i}_link_pose"],geometry='cylinder', mass=0.7,radius=piston_radius,length=piston_length,material_script_uri_param="file://media/materials/scripts/gazebo.material",material_script_name_param="Gazebo/Yellow")
+    elif i == 4:
+        stewart_model.add_link(f"piston{i}_cylinder_link",piston_cylinder_link_pose[f"piston{i}_link_pose"],geometry='cylinder', mass=0.7,radius=piston_radius,length=piston_length,material_script_uri_param="file://media/materials/scripts/gazebo.material",material_script_name_param="Gazebo/Purple")
+    elif i == 5:
+        stewart_model.add_link(f"piston{i}_cylinder_link",piston_cylinder_link_pose[f"piston{i}_link_pose"],geometry='cylinder', mass=0.7,radius=piston_radius,length=piston_length,material_script_uri_param="file://media/materials/scripts/gazebo.material",material_script_name_param="Gazebo/White")
     elif i == 6:
         stewart_model.add_link(f"piston{i}_cylinder_link",piston_cylinder_link_pose[f"piston{i}_link_pose"],geometry='cylinder', mass=0.7,radius=piston_radius,length=piston_length,material_script_uri_param="file://media/materials/scripts/gazebo.material",material_script_name_param="Gazebo/Blue")
     else:
@@ -150,7 +158,7 @@ for i in range(1,7):
     stewart_model.add_glue("stewart", f"piston{i}_shaft_linkL", f"piston{i}_shaft_linkU")
 
 for i in range(1,7):
-    stewart_model.add_control(f"piston{i}_prismatic_joint", str(1000000), str(10), str(100000))
+    stewart_model.add_control(f"piston{i}_prismatic_joint", str(50000), str(10000), str(1000))
 
 # finally, save the model in sdf format
 stewart_model.save_model("stewart_sdf")

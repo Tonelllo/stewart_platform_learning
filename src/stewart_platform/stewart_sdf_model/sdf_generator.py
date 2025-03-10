@@ -203,6 +203,11 @@ class CreateRobotSDF():
         pose_tag.appendChild(pose_text_node)
         link_tag.appendChild(pose_tag)
 
+        gravity_tag = self.root.createElement("gravity")
+        gravity_text_node = self.root.createTextNode("0")
+        gravity_tag.appendChild(gravity_text_node)
+        link_tag.appendChild(gravity_tag)
+
         # self._add_inertial(geometry=geometry,mass=mass, radius=radius, length=length)
         # link_tag.appendChild(self.inertial_tag)
 
