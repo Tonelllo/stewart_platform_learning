@@ -2,11 +2,12 @@ import math
 from tkinter import font
 import matplotlib.pyplot as plt
 
-def balls_link_pose(radi, theta, z , pitch):
+def balls_link_pose(radi, theta, z , pitch, offset):
     radi -= 0.1* radi
     balls_link_pose = {}
+    offset = math.radians(offset)
     for i in [1,3,5]:
-        lambda_i = (i*math.pi)/3 - math.radians(theta)/2
+        lambda_i = (i*math.pi)/3 - math.radians(theta)/2 + offset
         balls_link_pose[f'ball{i}_link_pose']   = [radi* math.cos(lambda_i),      radi* math.sin(lambda_i),      z, 0 , pitch, 0]
         lambda_i_plus = lambda_i + math.radians(theta)
         balls_link_pose[f'ball{i+1}_link_pose'] = [radi* math.cos(lambda_i_plus), radi* math.sin(lambda_i_plus), z, 0 , pitch, 0]
@@ -20,12 +21,12 @@ def balls_link_pose(radi, theta, z , pitch):
     return balls_link_pose , balls_link_pose_str
 
         
-def plot_attachment_points(radi,theta):
+def plot_attachment_points(radi,theta, offset):
     radi -= 0.1* radi
-    
+    offset = math.radians(offset)
     balls_link_pose = {}
     for i in [1,3,5]:
-        lambda_i = (i*math.pi)/3 - math.radians(theta)/2
+        lambda_i = (i*math.pi)/3 - math.radians(theta)/2 + offset
         balls_link_pose[f'ball{i}_link_pose']   = [radi* math.cos(lambda_i),      radi* math.sin(lambda_i)]
         lambda_i_plus = lambda_i + math.radians(theta)
         balls_link_pose[f'ball{i+1}_link_pose'] = [radi* math.cos(lambda_i_plus), radi* math.sin(lambda_i_plus)]
@@ -51,10 +52,10 @@ def plot_attachment_points(radi,theta):
     plt.ylim(-lim_limit,lim_limit)
 
 
-def piston_link_pose(radi_b,radi_p,theta_b,theta_p, base_platform_distance, base_height=0.125, ball_radius=0.1, platform_balls_radius=0.05):
+def piston_link_pose(radi_b,radi_p,theta_b,theta_p, base_platform_distance, base_height=0.125, ball_radius=0.1, platform_balls_radius=0.05, offset=0):
 
-    base_balls_link_poses ,_= balls_link_pose(radi_b, theta_b,0,0)
-    platform_balls_link_poses,_ = balls_link_pose(radi_p, theta_p,0,0)
+    base_balls_link_poses ,_= balls_link_pose(radi_b, theta_b,0,0, offset)
+    platform_balls_link_poses,_ = balls_link_pose(radi_p, theta_p,0,0, offset)
 
     pistons_link_pose = {}
 
@@ -99,14 +100,16 @@ if __name__=="__main__":
     BASE_RADIUS = 0.1
     height = 0.25
 
+    offset = 180
+
     platform_radius = 0.1
     teta_plat = 10
 
 
     dist_plat_base = 2
 
-    base_balls_link_pose, base_balls_link_poses_str = balls_link_pose(BASE_RADIUS,Tetha_angle,height, 0) 
-    plat_balls_link_pose, plat_balls_link_poses_str = balls_link_pose(platform_radius,teta_plat,0, 0) 
+    base_balls_link_pose, base_balls_link_poses_str = balls_link_pose(BASE_RADIUS,Tetha_angle,height, 0,offset=offset) 
+    plat_balls_link_pose, plat_balls_link_poses_str = balls_link_pose(platform_radius,teta_plat,0, 0, offset=offset) 
 
 
     x_base_1 = base_balls_link_pose['ball1_link_pose'][0]
@@ -116,12 +119,12 @@ if __name__=="__main__":
     y_platform_1 = plat_balls_link_pose['ball1_link_pose'][1]
 
 
-    piston_link_poses , pis_leng = piston_link_pose(BASE_RADIUS,platform_radius, Tetha_angle,teta_plat,dist_plat_base)
+    piston_link_poses , pis_leng = piston_link_pose(BASE_RADIUS,platform_radius, Tetha_angle,teta_plat,dist_plat_base, offset=offset)
     
     fig= plt.figure(figsize=(10,9))
-    plot_attachment_points(platform_radius,teta_plat)
+    plot_attachment_points(platform_radius,teta_plat, offset)
 
-    plot_attachment_points(BASE_RADIUS,Tetha_angle)
+    plot_attachment_points(BASE_RADIUS,Tetha_angle, offset)
     plt.text(-0.25,-0.25,f"platform_points_angle = {teta_plat} deg",color='darkblue',size=15)
     plt.text(-0.25,0.25,f"Base_points_angle = {Tetha_angle} deg",color='orange',size=15)
     plt.scatter([0],[0],color="r")

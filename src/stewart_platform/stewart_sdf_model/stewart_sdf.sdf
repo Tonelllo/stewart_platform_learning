@@ -1,6 +1,13 @@
 <?xml version="1.0" ?>
 <sdf version="1.5">
 	<model name="stewart">
+		<plugin name="gz::sim::systems::PosePublisher" filename="gz-sim-pose-publisher-system">
+			<publish_link_pose>true</publish_link_pose>
+			<use_pose_vector_msg>true</use_pose_vector_msg>
+			<static_publisher>false</static_publisher>
+			<static_update_frequency>1</static_update_frequency>
+		</plugin>
+		<plugin name="gz::sim::systems::JointStatePublisher" filename="gz-sim-joint-state-publisher-system"/>
 		<joint name="piston1_prismatic_joint" type="prismatic">
 			<parent>piston1_cylinder_link</parent>
 			<child>piston1_shaft_linkL</child>
@@ -9,7 +16,7 @@
 				<xyz>0 0 1</xyz>
 				<limit>
 					<lower>0.0</lower>
-					<upper>0.14</upper>
+					<upper>0.2</upper>
 					<velocity>1</velocity>
 					<effort>100000</effort>
 				</limit>
@@ -23,7 +30,7 @@
 				<xyz>0 0 1</xyz>
 				<limit>
 					<lower>0.0</lower>
-					<upper>0.14</upper>
+					<upper>0.2</upper>
 					<velocity>1</velocity>
 					<effort>100000</effort>
 				</limit>
@@ -37,7 +44,7 @@
 				<xyz>0 0 1</xyz>
 				<limit>
 					<lower>0.0</lower>
-					<upper>0.14</upper>
+					<upper>0.2</upper>
 					<velocity>1</velocity>
 					<effort>100000</effort>
 				</limit>
@@ -51,7 +58,7 @@
 				<xyz>0 0 1</xyz>
 				<limit>
 					<lower>0.0</lower>
-					<upper>0.14</upper>
+					<upper>0.2</upper>
 					<velocity>1</velocity>
 					<effort>100000</effort>
 				</limit>
@@ -65,7 +72,7 @@
 				<xyz>0 0 1</xyz>
 				<limit>
 					<lower>0.0</lower>
-					<upper>0.14</upper>
+					<upper>0.2</upper>
 					<velocity>1</velocity>
 					<effort>100000</effort>
 				</limit>
@@ -79,7 +86,7 @@
 				<xyz>0 0 1</xyz>
 				<limit>
 					<lower>0.0</lower>
-					<upper>0.14</upper>
+					<upper>0.2</upper>
 					<velocity>1</velocity>
 					<effort>100000</effort>
 				</limit>
@@ -675,7 +682,7 @@
 				<material>
 					<script>
 						<uri>file://media/materials/scripts/gazebo.material</uri>
-						<name>Gazebo/DarkGrey</name>
+						<name>Gazebo/Red</name>
 					</script>
 				</material>
 			</visual>
@@ -760,7 +767,7 @@
 				<material>
 					<script>
 						<uri>file://media/materials/scripts/gazebo.material</uri>
-						<name>Gazebo/DarkGrey</name>
+						<name>Gazebo/Blue</name>
 					</script>
 				</material>
 			</visual>

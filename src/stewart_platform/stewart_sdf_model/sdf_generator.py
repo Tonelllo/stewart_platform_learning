@@ -12,10 +12,38 @@ class CreateRobotSDF():
         self.sdf_tag.appendChild(self.model_tag)
 
 
-    def add_plugin(self, name, filename):
+    def add_jsp_plugin(self, name, filename):
         plugin_tag = self.root.createElement("plugin")
         plugin_tag.setAttribute('name',name)
         plugin_tag.setAttribute('filename',filename)
+
+        self.model_tag.appendChild(plugin_tag)
+
+    def add_plugin(self, name, filename, publish_link_pose, use_pose_vector_msg, static_publisher, static_update_frequency):
+        plugin_tag = self.root.createElement("plugin")
+        plugin_tag.setAttribute('name',name)
+        plugin_tag.setAttribute('filename',filename)
+
+        publish_link_pose_tag = self.root.createElement("publish_link_pose")
+        publish_link_pose_text = self.root.createTextNode(publish_link_pose)
+        publish_link_pose_tag.appendChild(publish_link_pose_text)
+        plugin_tag.appendChild(publish_link_pose_tag)
+
+        use_pose_vector_msg_tag = self.root.createElement("use_pose_vector_msg")
+        use_pose_vector_msg_text = self.root.createTextNode(use_pose_vector_msg)
+        use_pose_vector_msg_tag.appendChild(use_pose_vector_msg_text)
+        plugin_tag.appendChild(use_pose_vector_msg_tag)
+
+        static_publisher_tag = self.root.createElement("static_publisher")
+        static_publisher_text = self.root.createTextNode(static_publisher)
+        static_publisher_tag.appendChild(static_publisher_text)
+        plugin_tag.appendChild(static_publisher_tag)
+
+        static_update_frequency_tag = self.root.createElement("static_update_frequency")
+        static_update_frequency_text = self.root.createTextNode(static_update_frequency)
+        static_update_frequency_tag.appendChild(static_update_frequency_text)
+        plugin_tag.appendChild(static_update_frequency_tag)
+
         self.model_tag.appendChild(plugin_tag)
 
     def add_glue(self, model_name, parent, child):

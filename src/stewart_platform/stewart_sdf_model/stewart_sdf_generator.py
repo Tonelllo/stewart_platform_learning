@@ -6,12 +6,12 @@ from piston_balls_pose import balls_link_pose,  piston_link_pose
 # Define base platform parameters
 base_height = 0.015
 base_radius = 0.1   
-base_mass = 0.001
+base_mass = 0.01
 
 # Define top platform parameters
 platform_height = 0.015  
 platform_radius =  1.0*base_radius 
-platform_mass = 0.001 
+platform_mass = 0.01 
 
 # Define top and bottom balls parameters 
 ball_radius = 0.01
@@ -25,10 +25,13 @@ attachment_angle_bottom = 110
 base_platform_distance = 0.25
 base_plat_dis = base_platform_distance  - 0.5*base_height - 0.5*platform_height - platform_balls_radius -ball_radius
 
+# Rotation offset
+offset = 0
+
 
 # Now define piston (cylinder and shaft) radius , length and pose based on the above parameters
 piston_radius = 0.5*ball_radius
-piston_cylinder_link_pose , piston_length = piston_link_pose(radi_b=base_radius,radi_p=platform_radius,theta_b=attachment_angle_bottom,theta_p=attachment_angle_top,base_platform_distance=base_plat_dis,base_height=base_height, ball_radius=ball_radius) 
+piston_cylinder_link_pose , piston_length = piston_link_pose(radi_b=base_radius,radi_p=platform_radius,theta_b=attachment_angle_bottom,theta_p=attachment_angle_top,base_platform_distance=base_plat_dis,base_height=base_height, ball_radius=ball_radius, offset=offset) 
 
 
 
@@ -38,7 +41,10 @@ Initialize stewart platform model and add control plugin
 # Creat model object 
 stewart_model = CreateRobotSDF()
 # add plugin
-# stewart_model.add_plugin("joint_controller", "libjoint_controller.so")
+stewart_model.add_plugin(name="gz::sim::systems::PosePublisher", filename="gz-sim-pose-publisher-system", publish_link_pose="true", use_pose_vector_msg="true", static_publisher="false", static_update_frequency="1")
+
+stewart_model.add_jsp_plugin(name="gz::sim::systems::JointStatePublisher", filename="gz-sim-joint-state-publisher-system")
+
 
 """
 First, Define all Joints:
@@ -55,7 +61,7 @@ p_p_joint_vel_limit = str(1)
 p_p_joint_eff_limit = str(100000)
 p_p_joint_day_damping = str(1)
 p_p_joint_axis_lower_limit = "0.0"
-p_p_joint_axis_upper_limit = str(0.14)
+p_p_joint_axis_upper_limit = str(0.20)
 
 for i in range(1,7): # parent, child
     stewart_model.add_joint(f"piston{i}_prismatic_joint",'prismatic' ,f"piston{i}_cylinder_link", f"piston{i}_shaft_linkL", pose="0 0 0 0 0 0", axis_xyz="0 0 1", axis_limit_lower_param=p_p_joint_axis_lower_limit,axis_limit_upper_param=p_p_joint_axis_upper_limit,axis_limit_velocity_param=p_p_joint_vel_limit,axis_limit_effort_param=p_p_joint_eff_limit,axis_dynamics_damping_param=p_p_joint_day_damping)
@@ -110,29 +116,34 @@ platform_link_pose = "0 0 " + str(0.5*base_height+base_platform_distance) +" 0 0
 stewart_model.add_link("platform_link",platform_link_pose, 'cylinder',mass=platform_mass,radius= platform_radius,length=platform_height,material_script_uri_param="file://media/materials/scripts/gazebo.material",material_script_name_param="Gazebo/Footway")
 
 # add bottom ball links pose
-_, bottom_balls_link_pose = balls_link_pose(base_radius,attachment_angle_bottom, base_height,0)
+_, bottom_balls_link_pose = balls_link_pose(base_radius,attachment_angle_bottom, base_height,0, offset=offset)
 for i in range(1,7):
-    stewart_model.add_link(f"bottom_ball{i}_link",bottom_balls_link_pose[f"ball{i}_link_pose"],geometry='sphere', mass=0.00001,radius=ball_radius,length=0.1,material_script_uri_param="file://media/materials/scripts/gazebo.material",material_script_name_param="Gazebo/Gold")
+    stewart_model.add_link(f"bottom_ball{i}_link",bottom_balls_link_pose[f"ball{i}_link_pose"],geometry='sphere', mass=0.7,radius=ball_radius,length=0.1,material_script_uri_param="file://media/materials/scripts/gazebo.material",material_script_name_param="Gazebo/Gold")
 
 # add top ball links pose
 top_ball_height = 0.5*base_height+base_platform_distance - platform_height
-_, top_balls_link_pose = balls_link_pose(platform_radius,attachment_angle_top,top_ball_height,0)
+_, top_balls_link_pose = balls_link_pose(platform_radius,attachment_angle_top,top_ball_height,0, offset=offset)
 
 for i in range(1,7):
-    stewart_model.add_link(f"top_ball{i}_link",top_balls_link_pose[f"ball{i}_link_pose"],geometry='sphere', mass=0.000001,radius=platform_balls_radius,length=0.1,material_script_uri_param="file://media/materials/scripts/gazebo.material",material_script_name_param="Gazebo/White")
+    stewart_model.add_link(f"top_ball{i}_link",top_balls_link_pose[f"ball{i}_link_pose"],geometry='sphere', mass=0.7,radius=platform_balls_radius,length=0.1,material_script_uri_param="file://media/materials/scripts/gazebo.material",material_script_name_param="Gazebo/White")
 
 
 for i in range(1,7):
-    stewart_model.add_link(f"piston{i}_cylinder_link",piston_cylinder_link_pose[f"piston{i}_link_pose"],geometry='cylinder', mass=0.00001,radius=piston_radius,length=piston_length,material_script_uri_param="file://media/materials/scripts/gazebo.material",material_script_name_param="Gazebo/DarkGrey")
+    if i == 1:
+        stewart_model.add_link(f"piston{i}_cylinder_link",piston_cylinder_link_pose[f"piston{i}_link_pose"],geometry='cylinder', mass=0.7,radius=piston_radius,length=piston_length,material_script_uri_param="file://media/materials/scripts/gazebo.material",material_script_name_param="Gazebo/Red")
+    elif i == 6:
+        stewart_model.add_link(f"piston{i}_cylinder_link",piston_cylinder_link_pose[f"piston{i}_link_pose"],geometry='cylinder', mass=0.7,radius=piston_radius,length=piston_length,material_script_uri_param="file://media/materials/scripts/gazebo.material",material_script_name_param="Gazebo/Blue")
+    else:
+        stewart_model.add_link(f"piston{i}_cylinder_link",piston_cylinder_link_pose[f"piston{i}_link_pose"],geometry='cylinder', mass=0.7,radius=piston_radius,length=piston_length,material_script_uri_param="file://media/materials/scripts/gazebo.material",material_script_name_param="Gazebo/DarkGrey")
 
 # define piston shaft link pose 
 # note: piston shaft pose is equal to piston cylinder link pose
 
 for i in range(1,7):
-    stewart_model.add_link(f"piston{i}_shaft_linkU", piston_cylinder_link_pose[f"piston{i}_link_pose"],geometry='cylinder', mass=0.00001,radius=0.5*piston_radius,length=piston_length,material_script_uri_param="file://media/materials/scripts/gazebo.material",material_script_name_param="Gazebo/Black")
+    stewart_model.add_link(f"piston{i}_shaft_linkU", piston_cylinder_link_pose[f"piston{i}_link_pose"],geometry='cylinder', mass=0.7,radius=0.5*piston_radius,length=piston_length,material_script_uri_param="file://media/materials/scripts/gazebo.material",material_script_name_param="Gazebo/Black")
 
 for i in range(1,7):
-    stewart_model.add_link(f"piston{i}_shaft_linkL", piston_cylinder_link_pose[f"piston{i}_link_pose"],geometry='cylinder', mass=0.00001,radius=0.5*piston_radius,length=piston_length,material_script_uri_param="file://media/materials/scripts/gazebo.material",material_script_name_param="Gazebo/Black")
+    stewart_model.add_link(f"piston{i}_shaft_linkL", piston_cylinder_link_pose[f"piston{i}_link_pose"],geometry='cylinder', mass=0.7,radius=0.5*piston_radius,length=piston_length,material_script_uri_param="file://media/materials/scripts/gazebo.material",material_script_name_param="Gazebo/Black")
 
 
 for i in range(1,7):
