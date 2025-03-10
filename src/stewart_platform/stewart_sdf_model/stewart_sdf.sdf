@@ -179,32 +179,32 @@
 		<joint name="piston1_bottom_pitch_joint" type="ball">
 			<parent>bottom_ball1_link</parent>
 			<child>piston1_cylinder_link</child>
-			<pose>0 0 -0.11026678198431229 0 0 0</pose>
+			<pose>0 0 -0.1085283145030097 0 0 0</pose>
 		</joint>
 		<joint name="piston2_bottom_pitch_joint" type="ball">
 			<parent>bottom_ball2_link</parent>
 			<child>piston2_cylinder_link</child>
-			<pose>0 0 -0.11026678198431229 0 0 0</pose>
+			<pose>0 0 -0.1085283145030097 0 0 0</pose>
 		</joint>
 		<joint name="piston3_bottom_pitch_joint" type="ball">
 			<parent>bottom_ball3_link</parent>
 			<child>piston3_cylinder_link</child>
-			<pose>0 0 -0.11026678198431229 0 0 0</pose>
+			<pose>0 0 -0.1085283145030097 0 0 0</pose>
 		</joint>
 		<joint name="piston4_bottom_pitch_joint" type="ball">
 			<parent>bottom_ball4_link</parent>
 			<child>piston4_cylinder_link</child>
-			<pose>0 0 -0.11026678198431229 0 0 0</pose>
+			<pose>0 0 -0.1085283145030097 0 0 0</pose>
 		</joint>
 		<joint name="piston5_bottom_pitch_joint" type="ball">
 			<parent>bottom_ball5_link</parent>
 			<child>piston5_cylinder_link</child>
-			<pose>0 0 -0.11026678198431229 0 0 0</pose>
+			<pose>0 0 -0.1085283145030097 0 0 0</pose>
 		</joint>
 		<joint name="piston6_bottom_pitch_joint" type="ball">
 			<parent>bottom_ball6_link</parent>
 			<child>piston6_cylinder_link</child>
-			<pose>0 0 -0.11026678198431229 0 0 0</pose>
+			<pose>0 0 -0.1085283145030097 0 0 0</pose>
 		</joint>
 		<joint name="top_ball1_joint" type="revolute">
 			<parent>platform_link</parent>
@@ -347,7 +347,7 @@
 		<joint name="piston1_top_pitch_joint" type="universal">
 			<parent>top_ball1_link</parent>
 			<child>piston1_shaft_linkU</child>
-			<pose>0 0 0.11026678198431229 0 0 0</pose>
+			<pose>0 0 0.1085283145030097 0 0 0</pose>
 			<axis>
 				<xyz>1 0 0</xyz>
 				<limit>
@@ -361,7 +361,7 @@
 		<joint name="piston2_top_pitch_joint" type="universal">
 			<parent>top_ball2_link</parent>
 			<child>piston2_shaft_linkU</child>
-			<pose>0 0 0.11026678198431229 0 0 0</pose>
+			<pose>0 0 0.1085283145030097 0 0 0</pose>
 			<axis>
 				<xyz>1 0 0</xyz>
 				<limit>
@@ -375,7 +375,7 @@
 		<joint name="piston3_top_pitch_joint" type="universal">
 			<parent>top_ball3_link</parent>
 			<child>piston3_shaft_linkU</child>
-			<pose>0 0 0.11026678198431229 0 0 0</pose>
+			<pose>0 0 0.1085283145030097 0 0 0</pose>
 			<axis>
 				<xyz>1 0 0</xyz>
 				<limit>
@@ -389,7 +389,7 @@
 		<joint name="piston4_top_pitch_joint" type="universal">
 			<parent>top_ball4_link</parent>
 			<child>piston4_shaft_linkU</child>
-			<pose>0 0 0.11026678198431229 0 0 0</pose>
+			<pose>0 0 0.1085283145030097 0 0 0</pose>
 			<axis>
 				<xyz>1 0 0</xyz>
 				<limit>
@@ -403,7 +403,7 @@
 		<joint name="piston5_top_pitch_joint" type="universal">
 			<parent>top_ball5_link</parent>
 			<child>piston5_shaft_linkU</child>
-			<pose>0 0 0.11026678198431229 0 0 0</pose>
+			<pose>0 0 0.1085283145030097 0 0 0</pose>
 			<axis>
 				<xyz>1 0 0</xyz>
 				<limit>
@@ -417,7 +417,7 @@
 		<joint name="piston6_top_pitch_joint" type="universal">
 			<parent>top_ball6_link</parent>
 			<child>piston6_shaft_linkU</child>
-			<pose>0 0 0.11026678198431229 0 0 0</pose>
+			<pose>0 0 0.1085283145030097 0 0 0</pose>
 			<axis>
 				<xyz>1 0 0</xyz>
 				<limit>
@@ -481,7 +481,7 @@
 			</collision>
 		</link>
 		<link name="bottom_ball1_link">
-			<pose>0.0923472485131048 0.008079337352707902 0.015 0 0 0.08726646259971638</pose>
+			<pose>0.09129167870423167 0.016097186069724434 0.015 0 0 0.1745329251994329</pose>
 			<gravity>0</gravity>
 			<visual name="bottom_ball1_link_visual">
 				<geometry>
@@ -498,7 +498,7 @@
 			</visual>
 		</link>
 		<link name="bottom_ball2_link">
-			<pose>-0.03917671286336282 0.08401473185829746 0.015 0 0 2.007128639793479</pose>
+			<pose>-0.03170526728628949 0.0871095059468537 0.015 0 0 1.9198621771937625</pose>
 			<gravity>0</gravity>
 			<visual name="bottom_ball2_link_visual">
 				<geometry>
@@ -515,7 +515,7 @@
 			</visual>
 		</link>
 		<link name="bottom_ball3_link">
-			<pose>-0.05317053564974197 0.07593539450558952 0.015 0 0 2.181661564992912</pose>
+			<pose>-0.059586411417942194 0.07101231987712925 0.015 0 0 2.2689280275926285</pose>
 			<gravity>0</gravity>
 			<visual name="bottom_ball3_link_visual">
 				<geometry>
@@ -532,7 +532,7 @@
 			</visual>
 		</link>
 		<link name="bottom_ball4_link">
-			<pose>-0.05317053564974193 -0.07593539450558956 0.015 0 0 -2.1816615649929116</pose>
+			<pose>-0.0595864114179422 -0.07101231987712925 0.015 0 0 -2.2689280275926285</pose>
 			<gravity>0</gravity>
 			<visual name="bottom_ball4_link_visual">
 				<geometry>
@@ -549,7 +549,7 @@
 			</visual>
 		</link>
 		<link name="bottom_ball5_link">
-			<pose>-0.03917671286336281 -0.08401473185829746 0.015 0 0 -2.007128639793479</pose>
+			<pose>-0.031705267286289474 -0.0871095059468537 0.015 0 0 -1.9198621771937623</pose>
 			<gravity>0</gravity>
 			<visual name="bottom_ball5_link_visual">
 				<geometry>
@@ -566,7 +566,7 @@
 			</visual>
 		</link>
 		<link name="bottom_ball6_link">
-			<pose>0.0923472485131048 -0.008079337352707926 0.015 0 0 -0.08726646259971663</pose>
+			<pose>0.09129167870423167 -0.016097186069724444 0.015 0 0 -0.174532925199433</pose>
 			<gravity>0</gravity>
 			<visual name="bottom_ball6_link_visual">
 				<geometry>
@@ -583,7 +583,7 @@
 			</visual>
 		</link>
 		<link name="top_ball1_link">
-			<pose>0.04981511349708836 0.07114335504649892 0.2425 0 0 0.9599310885968811</pose>
+			<pose>0.05287093010940739 0.06890273760429377 0.2425 0 0 0.916297857297023</pose>
 			<gravity>0</gravity>
 			<visual name="top_ball1_link_visual">
 				<geometry>
@@ -600,7 +600,7 @@
 			</visual>
 		</link>
 		<link name="top_ball2_link">
-			<pose>0.03670439603217976 0.07871283130413304 0.2425 0 0 1.134464013796314</pose>
+			<pose>0.03323605610090805 0.08023893739860526 0.2425 0 0 1.1780972450961724</pose>
 			<gravity>0</gravity>
 			<visual name="top_ball2_link_visual">
 				<geometry>
@@ -617,7 +617,7 @@
 			</visual>
 		</link>
 		<link name="top_ball3_link">
-			<pose>-0.0865195095292681 0.007569476257634114 0.2425 0 0 3.0543261909900767</pose>
+			<pose>-0.08610698621031543 0.01133619979431148 0.2425 0 0 3.0106929596902186</pose>
 			<gravity>0</gravity>
 			<visual name="top_ball3_link_visual">
 				<geometry>
@@ -634,7 +634,7 @@
 			</visual>
 		</link>
 		<link name="top_ball4_link">
-			<pose>-0.0865195095292681 -0.007569476257634092 0.2425 0 0 -3.054326190990077</pose>
+			<pose>-0.08610698621031543 -0.011336199794311495 0.2425 0 0 -3.0106929596902186</pose>
 			<gravity>0</gravity>
 			<visual name="top_ball4_link_visual">
 				<geometry>
@@ -651,7 +651,7 @@
 			</visual>
 		</link>
 		<link name="top_ball5_link">
-			<pose>0.03670439603217976 -0.07871283130413305 0.2425 0 0 -1.134464013796314</pose>
+			<pose>0.03323605610090807 -0.08023893739860524 0.2425 0 0 -1.1780972450961722</pose>
 			<gravity>0</gravity>
 			<visual name="top_ball5_link_visual">
 				<geometry>
@@ -668,7 +668,7 @@
 			</visual>
 		</link>
 		<link name="top_ball6_link">
-			<pose>0.04981511349708835 -0.07114335504649894 0.2425 0 0 -0.9599310885968813</pose>
+			<pose>0.052870930109407376 -0.06890273760429377 0.2425 0 0 -0.9162978572970232</pose>
 			<gravity>0</gravity>
 			<visual name="top_ball6_link_visual">
 				<geometry>
@@ -685,13 +685,13 @@
 			</visual>
 		</link>
 		<link name="piston1_cylinder_link">
-			<pose>0.07108118100509658 0.03961134619960341 0.1365 0 0.35215196613886435 2.1641528839490314</pose>
+			<pose>0.07208130440681954 0.042499961837009104 0.1365 0 0.30559477021812076 2.199799567347474</pose>
 			<gravity>0</gravity>
 			<visual name="piston1_cylinder_link_visual">
 				<geometry>
 					<cylinder>
 						<radius>0.009</radius>
-						<length>0.22053356396862459</length>
+						<length>0.2170566290060194</length>
 					</cylinder>
 				</geometry>
 				<material>
@@ -703,13 +703,13 @@
 			</visual>
 		</link>
 		<link name="piston2_cylinder_link">
-			<pose>-0.001236158415591531 0.08136378158121524 0.1365 0 0.35215196613886435 -0.06975778155583616</pose>
+			<pose>0.0007653944073092826 0.08367422167272948 0.1365 0 0.305594770218121 -0.10540446495427853</pose>
 			<gravity>0</gravity>
 			<visual name="piston2_cylinder_link_visual">
 				<geometry>
 					<cylinder>
 						<radius>0.009</radius>
-						<length>0.22053356396862459</length>
+						<length>0.2170566290060194</length>
 					</cylinder>
 				</geometry>
 				<material>
@@ -721,13 +721,13 @@
 			</visual>
 		</link>
 		<link name="piston3_cylinder_link">
-			<pose>-0.06984502258950503 0.041752435381611816 0.1365 0 0.35215196613886435 -2.0246373208373596</pose>
+			<pose>-0.07284669881412881 0.041174259835720366 0.1365 0 0.30559477021812076 -1.9889906374389168</pose>
 			<gravity>0</gravity>
 			<visual name="piston3_cylinder_link_visual">
 				<geometry>
 					<cylinder>
 						<radius>0.009</radius>
-						<length>0.22053356396862459</length>
+						<length>0.2170566290060194</length>
 					</cylinder>
 				</geometry>
 				<material>
@@ -739,13 +739,13 @@
 			</visual>
 		</link>
 		<link name="piston4_cylinder_link">
-			<pose>-0.06984502258950501 -0.04175243538161182 0.1365 0 0.35215196613886457 2.0246373208373596</pose>
+			<pose>-0.07284669881412881 -0.04117425983572037 0.1365 0 0.30559477021812076 1.9889906374389168</pose>
 			<gravity>0</gravity>
 			<visual name="piston4_cylinder_link_visual">
 				<geometry>
 					<cylinder>
 						<radius>0.009</radius>
-						<length>0.22053356396862459</length>
+						<length>0.2170566290060194</length>
 					</cylinder>
 				</geometry>
 				<material>
@@ -757,13 +757,13 @@
 			</visual>
 		</link>
 		<link name="piston5_cylinder_link">
-			<pose>-0.001236158415591524 -0.08136378158121525 0.1365 0 0.35215196613886435 0.06975778155583601</pose>
+			<pose>0.0007653944073092965 -0.08367422167272948 0.1365 0 0.305594770218121 0.10540446495427876</pose>
 			<gravity>0</gravity>
 			<visual name="piston5_cylinder_link_visual">
 				<geometry>
 					<cylinder>
 						<radius>0.009</radius>
-						<length>0.22053356396862459</length>
+						<length>0.2170566290060194</length>
 					</cylinder>
 				</geometry>
 				<material>
@@ -775,13 +775,13 @@
 			</visual>
 		</link>
 		<link name="piston6_cylinder_link">
-			<pose>0.07108118100509658 -0.03961134619960343 0.1365 0 0.35215196613886435 -2.1641528839490314</pose>
+			<pose>0.07208130440681952 -0.04249996183700911 0.1365 0 0.30559477021812076 -2.1997995673474744</pose>
 			<gravity>0</gravity>
 			<visual name="piston6_cylinder_link_visual">
 				<geometry>
 					<cylinder>
 						<radius>0.009</radius>
-						<length>0.22053356396862459</length>
+						<length>0.2170566290060194</length>
 					</cylinder>
 				</geometry>
 				<material>
@@ -793,13 +793,13 @@
 			</visual>
 		</link>
 		<link name="piston1_shaft_linkU">
-			<pose>0.07108118100509658 0.03961134619960341 0.1365 0 0.35215196613886435 2.1641528839490314</pose>
+			<pose>0.07208130440681954 0.042499961837009104 0.1365 0 0.30559477021812076 2.199799567347474</pose>
 			<gravity>0</gravity>
 			<visual name="piston1_shaft_linkU_visual">
 				<geometry>
 					<cylinder>
 						<radius>0.0045</radius>
-						<length>0.22053356396862459</length>
+						<length>0.2170566290060194</length>
 					</cylinder>
 				</geometry>
 				<material>
@@ -811,13 +811,13 @@
 			</visual>
 		</link>
 		<link name="piston2_shaft_linkU">
-			<pose>-0.001236158415591531 0.08136378158121524 0.1365 0 0.35215196613886435 -0.06975778155583616</pose>
+			<pose>0.0007653944073092826 0.08367422167272948 0.1365 0 0.305594770218121 -0.10540446495427853</pose>
 			<gravity>0</gravity>
 			<visual name="piston2_shaft_linkU_visual">
 				<geometry>
 					<cylinder>
 						<radius>0.0045</radius>
-						<length>0.22053356396862459</length>
+						<length>0.2170566290060194</length>
 					</cylinder>
 				</geometry>
 				<material>
@@ -829,13 +829,13 @@
 			</visual>
 		</link>
 		<link name="piston3_shaft_linkU">
-			<pose>-0.06984502258950503 0.041752435381611816 0.1365 0 0.35215196613886435 -2.0246373208373596</pose>
+			<pose>-0.07284669881412881 0.041174259835720366 0.1365 0 0.30559477021812076 -1.9889906374389168</pose>
 			<gravity>0</gravity>
 			<visual name="piston3_shaft_linkU_visual">
 				<geometry>
 					<cylinder>
 						<radius>0.0045</radius>
-						<length>0.22053356396862459</length>
+						<length>0.2170566290060194</length>
 					</cylinder>
 				</geometry>
 				<material>
@@ -847,13 +847,13 @@
 			</visual>
 		</link>
 		<link name="piston4_shaft_linkU">
-			<pose>-0.06984502258950501 -0.04175243538161182 0.1365 0 0.35215196613886457 2.0246373208373596</pose>
+			<pose>-0.07284669881412881 -0.04117425983572037 0.1365 0 0.30559477021812076 1.9889906374389168</pose>
 			<gravity>0</gravity>
 			<visual name="piston4_shaft_linkU_visual">
 				<geometry>
 					<cylinder>
 						<radius>0.0045</radius>
-						<length>0.22053356396862459</length>
+						<length>0.2170566290060194</length>
 					</cylinder>
 				</geometry>
 				<material>
@@ -865,13 +865,13 @@
 			</visual>
 		</link>
 		<link name="piston5_shaft_linkU">
-			<pose>-0.001236158415591524 -0.08136378158121525 0.1365 0 0.35215196613886435 0.06975778155583601</pose>
+			<pose>0.0007653944073092965 -0.08367422167272948 0.1365 0 0.305594770218121 0.10540446495427876</pose>
 			<gravity>0</gravity>
 			<visual name="piston5_shaft_linkU_visual">
 				<geometry>
 					<cylinder>
 						<radius>0.0045</radius>
-						<length>0.22053356396862459</length>
+						<length>0.2170566290060194</length>
 					</cylinder>
 				</geometry>
 				<material>
@@ -883,13 +883,13 @@
 			</visual>
 		</link>
 		<link name="piston6_shaft_linkU">
-			<pose>0.07108118100509658 -0.03961134619960343 0.1365 0 0.35215196613886435 -2.1641528839490314</pose>
+			<pose>0.07208130440681952 -0.04249996183700911 0.1365 0 0.30559477021812076 -2.1997995673474744</pose>
 			<gravity>0</gravity>
 			<visual name="piston6_shaft_linkU_visual">
 				<geometry>
 					<cylinder>
 						<radius>0.0045</radius>
-						<length>0.22053356396862459</length>
+						<length>0.2170566290060194</length>
 					</cylinder>
 				</geometry>
 				<material>
@@ -901,13 +901,13 @@
 			</visual>
 		</link>
 		<link name="piston1_shaft_linkL">
-			<pose>0.07108118100509658 0.03961134619960341 0.1365 0 0.35215196613886435 2.1641528839490314</pose>
+			<pose>0.07208130440681954 0.042499961837009104 0.1365 0 0.30559477021812076 2.199799567347474</pose>
 			<gravity>0</gravity>
 			<visual name="piston1_shaft_linkL_visual">
 				<geometry>
 					<cylinder>
 						<radius>0.0045</radius>
-						<length>0.22053356396862459</length>
+						<length>0.2170566290060194</length>
 					</cylinder>
 				</geometry>
 				<material>
@@ -919,13 +919,13 @@
 			</visual>
 		</link>
 		<link name="piston2_shaft_linkL">
-			<pose>-0.001236158415591531 0.08136378158121524 0.1365 0 0.35215196613886435 -0.06975778155583616</pose>
+			<pose>0.0007653944073092826 0.08367422167272948 0.1365 0 0.305594770218121 -0.10540446495427853</pose>
 			<gravity>0</gravity>
 			<visual name="piston2_shaft_linkL_visual">
 				<geometry>
 					<cylinder>
 						<radius>0.0045</radius>
-						<length>0.22053356396862459</length>
+						<length>0.2170566290060194</length>
 					</cylinder>
 				</geometry>
 				<material>
@@ -937,13 +937,13 @@
 			</visual>
 		</link>
 		<link name="piston3_shaft_linkL">
-			<pose>-0.06984502258950503 0.041752435381611816 0.1365 0 0.35215196613886435 -2.0246373208373596</pose>
+			<pose>-0.07284669881412881 0.041174259835720366 0.1365 0 0.30559477021812076 -1.9889906374389168</pose>
 			<gravity>0</gravity>
 			<visual name="piston3_shaft_linkL_visual">
 				<geometry>
 					<cylinder>
 						<radius>0.0045</radius>
-						<length>0.22053356396862459</length>
+						<length>0.2170566290060194</length>
 					</cylinder>
 				</geometry>
 				<material>
@@ -955,13 +955,13 @@
 			</visual>
 		</link>
 		<link name="piston4_shaft_linkL">
-			<pose>-0.06984502258950501 -0.04175243538161182 0.1365 0 0.35215196613886457 2.0246373208373596</pose>
+			<pose>-0.07284669881412881 -0.04117425983572037 0.1365 0 0.30559477021812076 1.9889906374389168</pose>
 			<gravity>0</gravity>
 			<visual name="piston4_shaft_linkL_visual">
 				<geometry>
 					<cylinder>
 						<radius>0.0045</radius>
-						<length>0.22053356396862459</length>
+						<length>0.2170566290060194</length>
 					</cylinder>
 				</geometry>
 				<material>
@@ -973,13 +973,13 @@
 			</visual>
 		</link>
 		<link name="piston5_shaft_linkL">
-			<pose>-0.001236158415591524 -0.08136378158121525 0.1365 0 0.35215196613886435 0.06975778155583601</pose>
+			<pose>0.0007653944073092965 -0.08367422167272948 0.1365 0 0.305594770218121 0.10540446495427876</pose>
 			<gravity>0</gravity>
 			<visual name="piston5_shaft_linkL_visual">
 				<geometry>
 					<cylinder>
 						<radius>0.0045</radius>
-						<length>0.22053356396862459</length>
+						<length>0.2170566290060194</length>
 					</cylinder>
 				</geometry>
 				<material>
@@ -991,13 +991,13 @@
 			</visual>
 		</link>
 		<link name="piston6_shaft_linkL">
-			<pose>0.07108118100509658 -0.03961134619960343 0.1365 0 0.35215196613886435 -2.1641528839490314</pose>
+			<pose>0.07208130440681952 -0.04249996183700911 0.1365 0 0.30559477021812076 -2.1997995673474744</pose>
 			<gravity>0</gravity>
 			<visual name="piston6_shaft_linkL_visual">
 				<geometry>
 					<cylinder>
 						<radius>0.0045</radius>
-						<length>0.22053356396862459</length>
+						<length>0.2170566290060194</length>
 					</cylinder>
 				</geometry>
 				<material>

@@ -96,14 +96,14 @@ def attachment_points_position(radi, theta, height):
 
 if __name__=="__main__":
 
-    Tetha_angle = 110
+    Tetha_angle = 100
     BASE_RADIUS = 0.1
     height = 0.25
 
-    offset = 180
+    offset = 0
 
     platform_radius = 0.1
-    teta_plat = 10
+    teta_plat = 15
 
 
     dist_plat_base = 2

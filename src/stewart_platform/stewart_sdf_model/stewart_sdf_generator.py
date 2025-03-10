@@ -18,8 +18,8 @@ ball_radius = 0.018
 platform_balls_radius = 0.01
 
 # Define attachment angles between balls of base and moiving platform
-attachment_angle_top = 10   
-attachment_angle_bottom = 110
+attachment_angle_top = 15   
+attachment_angle_bottom = 100
 
 # Define distance between base and moving platform
 base_platform_distance = 0.25
