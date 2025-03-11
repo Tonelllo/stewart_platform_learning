@@ -110,7 +110,7 @@ class CreateRobotSDF():
     </plugin>"""
 
 
-    def add_joint(self,name, type, parent, child,pose , axis_xyz, axis_limit_lower_param=False,axis_limit_upper_param=False, axis_limit_velocity_param=False, axis_limit_effort_param=False, axis_dynamics_damping_param=False, axis_name="axis", axis_name_2=False, axis_name_2_xyz=False):
+    def add_joint(self,name, type, parent, child,pose , axis_xyz=False, axis_limit_lower_param=False,axis_limit_upper_param=False, axis_limit_velocity_param=False, axis_limit_effort_param=False, axis_dynamics_damping_param=False, axis_name="axis", axis_name_2=False, axis_name_2_xyz=False):
         joint_tag = self.root.createElement("joint")
         joint_tag.setAttribute('name',name)
         joint_tag.setAttribute('type',type)
@@ -132,7 +132,7 @@ class CreateRobotSDF():
         joint_tag.appendChild(pose_tag)
         pose_tag.appendChild(pose_text_node)
 
-        if type != "ball":
+        if type not in ["ball", "fixed"]:
             self._add_axis(xyz_param=axis_xyz, limit_lower_param = axis_limit_lower_param, limit_upper_param=axis_limit_upper_param, limit_velocity_param=axis_limit_velocity_param,limit_effort_param=axis_limit_effort_param, dynamics_damping_param = axis_dynamics_damping_param, axis_name=axis_name )
             joint_tag.appendChild(self.axis_tag)
 
@@ -369,6 +369,12 @@ class CreateRobotSDF():
            
         elif geometry == 'box':
             geom_tag = self.root.createElement("box")
+            size_tag = self.root.createElement("size")
+            size_text = self.root.createTextNode(str(length)+" "+str(length)+" "+str(length))
+            size_tag.appendChild(size_text)
+            geom_tag.appendChild(size_tag)
+
+            geometry_tag.appendChild(geom_tag)
 
         self.visual_tag.appendChild(geometry_tag)
 
@@ -425,6 +431,11 @@ class CreateRobotSDF():
 
         elif geometry == 'box':
             geom_tag = self.root.createElement("box")
+            size_tag = self.root.createElement("size")
+            size_text = self.root.createTextNode(str(length)+" "+str(length)+" "+str(length))
+            size_tag.appendChild(size_text)
+            geom_tag.appendChild(size_tag)
+            geometry_tag.appendChild(geom_tag)
 
         self.collistion_tag.appendChild(geometry_tag)
 

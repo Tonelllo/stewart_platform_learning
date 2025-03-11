@@ -3,7 +3,6 @@ from tkinter import font
 import matplotlib.pyplot as plt
 
 def balls_link_pose(radi, theta, z , pitch, offset):
-    radi -= 0.1* radi
     balls_link_pose = {}
     offset = math.radians(offset)
     for i in [1,3,5]:
@@ -22,7 +21,6 @@ def balls_link_pose(radi, theta, z , pitch, offset):
 
         
 def plot_attachment_points(radi,theta, offset):
-    radi -= 0.1* radi
     offset = math.radians(offset)
     balls_link_pose = {}
     for i in [1,3,5]:
@@ -80,7 +78,6 @@ def piston_link_pose(radi_b,radi_p,theta_b,theta_p, base_platform_distance, base
 
 
 def attachment_points_position(radi, theta, height):
-    radi -= 0.1* radi
     balls_link_pose = {}
 
     for i in [1,3,5]:

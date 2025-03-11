@@ -4,25 +4,28 @@ import math
 from piston_balls_pose import balls_link_pose,  piston_link_pose
 
 # Define base platform parameters
-base_height = 0.015
+base_height = 0.001
 base_radius = 0.103   
-base_mass = 0.01
+base_mass = 0.00
 
 # Define top platform parameters
-platform_height = 0.015  
+platform_height = 0.001  
 platform_radius = 0.0965
-platform_mass = 0.01 
+platform_mass = 0.0
+
+# Docking element
+platform_rect_side = 0.1
 
 # Define top and bottom balls parameters 
-ball_radius = 0.018
-platform_balls_radius = 0.01
+ball_radius = 0.0
+platform_balls_radius = 0.0
 
 # Define attachment angles between balls of base and moiving platform
 attachment_angle_top = 15   
 attachment_angle_bottom = 100
 
 # Define distance between base and moving platform
-base_platform_distance = 0.25
+base_platform_distance = 0.27
 base_plat_dis = base_platform_distance  - 0.5*base_height - 0.5*platform_height - platform_balls_radius -ball_radius
 
 # Rotation offset
@@ -30,7 +33,7 @@ offset = 0
 
 
 # Now define piston (cylinder and shaft) radius , length and pose based on the above parameters
-piston_radius = 0.5*ball_radius
+piston_radius = 0.005
 piston_cylinder_link_pose , piston_length = piston_link_pose(radi_b=base_radius,radi_p=platform_radius,theta_b=attachment_angle_bottom,theta_p=attachment_angle_top,base_platform_distance=base_plat_dis,base_height=base_height, ball_radius=ball_radius, offset=offset) 
 
 
@@ -114,6 +117,10 @@ stewart_model.add_link("base_link",base_link_pose, 'cylinder',mass=base_mass,rad
 # add platform link
 platform_link_pose = "0 0 " + str(0.5*base_height+base_platform_distance) +" 0 0 0"  #-0.5*platform_height
 stewart_model.add_link("platform_link",platform_link_pose, 'cylinder',mass=platform_mass,radius= platform_radius,length=platform_height,material_script_uri_param="file://media/materials/scripts/gazebo.material",material_script_name_param="Gazebo/Footway")
+
+stewart_model.add_link("platform_cub", "0 0 " +str(0.5*base_height+base_platform_distance + platform_rect_side/2)+" 0 0 0", "box", 0, 0, platform_rect_side - 0.001, "file://media/materials/scripts/gazebo.material", "Gazebo/Gold");
+
+stewart_model.add_joint("plat_link_to_plat_cube", "fixed", "platform_link", "platform_cub", "0 0 0 0 0 0")
 
 # add bottom ball links pose
 _, bottom_balls_link_pose = balls_link_pose(base_radius,attachment_angle_bottom, base_height,0, offset=offset)
