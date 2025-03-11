@@ -480,14 +480,15 @@
 				</geometry>
 			</collision>
 		</link>
-		<link name="platform_cub">
-			<pose>0 0 0.3205 0 0 0</pose>
+		<link name="platform_cyl">
+			<pose>0 0 0.29550000000000004 0 0 0</pose>
 			<gravity>0</gravity>
-			<visual name="platform_cub_visual">
+			<visual name="platform_cyl_visual">
 				<geometry>
-					<box>
-						<size>0.099 0.099 0.099</size>
-					</box>
+					<cylinder>
+						<radius>0.02</radius>
+						<length>0.049</length>
+					</cylinder>
 				</geometry>
 				<material>
 					<script>
@@ -496,17 +497,47 @@
 					</script>
 				</material>
 			</visual>
-			<collision name="platform_cub_collision">
+			<collision name="platform_cyl_collision">
 				<geometry>
-					<box>
-						<size>0.099 0.099 0.099</size>
-					</box>
+					<cylinder>
+						<radius>0.02</radius>
+						<length>0.049</length>
+					</cylinder>
 				</geometry>
 			</collision>
 		</link>
-		<joint name="plat_link_to_plat_cube" type="fixed">
+		<link name="platform_sphere">
+			<pose>0 0 0.3405 0 0 0</pose>
+			<gravity>0</gravity>
+			<visual name="platform_sphere_visual">
+				<geometry>
+					<sphere>
+						<radius>0.02</radius>
+					</sphere>
+				</geometry>
+				<material>
+					<script>
+						<uri>file://media/materials/scripts/gazebo.material</uri>
+						<name>Gazebo/Gold</name>
+					</script>
+				</material>
+			</visual>
+			<collision name="platform_sphere_collision">
+				<geometry>
+					<sphere>
+						<radius>0.02</radius>
+					</sphere>
+				</geometry>
+			</collision>
+		</link>
+		<joint name="plat_link_to_plat_cyl" type="fixed">
 			<parent>platform_link</parent>
-			<child>platform_cub</child>
+			<child>platform_cyl</child>
+			<pose>0 0 0 0 0 0</pose>
+		</joint>
+		<joint name="plat_link_to_plat_sphere" type="fixed">
+			<parent>platform_link</parent>
+			<child>platform_sphere</child>
 			<pose>0 0 0 0 0 0</pose>
 		</joint>
 		<link name="bottom_ball1_link">

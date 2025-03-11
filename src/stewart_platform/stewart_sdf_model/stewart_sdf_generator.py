@@ -14,7 +14,9 @@ platform_radius = 0.0965
 platform_mass = 0.0
 
 # Docking element
-platform_rect_side = 0.1
+platform_cyl_rad = 0.02
+platform_cyl_len = 0.05
+platform_sphere_rad = 0.02
 
 # Define top and bottom balls parameters 
 ball_radius = 0.0
@@ -118,9 +120,12 @@ stewart_model.add_link("base_link",base_link_pose, 'cylinder',mass=base_mass,rad
 platform_link_pose = "0 0 " + str(0.5*base_height+base_platform_distance) +" 0 0 0"  #-0.5*platform_height
 stewart_model.add_link("platform_link",platform_link_pose, 'cylinder',mass=platform_mass,radius= platform_radius,length=platform_height,material_script_uri_param="file://media/materials/scripts/gazebo.material",material_script_name_param="Gazebo/Footway")
 
-stewart_model.add_link("platform_cub", "0 0 " +str(0.5*base_height+base_platform_distance + platform_rect_side/2)+" 0 0 0", "box", 0, 0, platform_rect_side - 0.001, "file://media/materials/scripts/gazebo.material", "Gazebo/Gold");
+stewart_model.add_link("platform_cyl", "0 0 " +str(0.5*base_height+base_platform_distance + platform_cyl_len/2)+" 0 0 0", "cylinder", 0, platform_cyl_rad, platform_cyl_len - 0.001, "file://media/materials/scripts/gazebo.material", "Gazebo/Gold");
 
-stewart_model.add_joint("plat_link_to_plat_cube", "fixed", "platform_link", "platform_cub", "0 0 0 0 0 0")
+stewart_model.add_link("platform_sphere", "0 0 " +str(0.5*base_height+base_platform_distance + platform_cyl_len)+" 0 0 0", "sphere", 0, platform_sphere_rad, 0, "file://media/materials/scripts/gazebo.material", "Gazebo/Gold");
+
+stewart_model.add_joint("plat_link_to_plat_cyl", "fixed", "platform_link", "platform_cyl", "0 0 0 0 0 0")
+stewart_model.add_joint("plat_link_to_plat_sphere", "fixed", "platform_link", "platform_sphere", "0 0 0 0 0 0")
 
 # add bottom ball links pose
 _, bottom_balls_link_pose = balls_link_pose(base_radius,attachment_angle_bottom, base_height,0, offset=offset)

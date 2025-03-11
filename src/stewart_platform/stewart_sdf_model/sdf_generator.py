@@ -357,6 +357,20 @@ class CreateRobotSDF():
 
             # add geom_tag to geometry
             geometry_tag.appendChild(geom_tag)
+        elif geometry == 'cone':
+            geom_tag = self.root.createElement("cone")
+            radius_tag = self.root.createElement("radius")
+            radius_text_node = self.root.createTextNode(str(radius))
+            radius_tag.appendChild(radius_text_node)
+            length_tag = self.root.createElement("length")
+            length_text_node = self.root.createTextNode(str(length))
+            length_tag.appendChild(length_text_node)
+            geom_tag.appendChild(radius_tag)
+            geom_tag.appendChild(length_tag)
+
+            # add geom_tag to geometry
+            geometry_tag.appendChild(geom_tag)
+
         elif geometry == 'sphere':
             geom_tag = self.root.createElement("sphere")
             radius_tag = self.root.createElement("radius")
@@ -417,6 +431,20 @@ class CreateRobotSDF():
             geom_tag.appendChild(length_tag)
 
             # add geometry tag to visual 
+            geometry_tag.appendChild(geom_tag)
+
+        elif geometry == 'cone':
+            geom_tag = self.root.createElement("cone")
+            radius_tag = self.root.createElement("radius")
+            radius_text_node = self.root.createTextNode(str(radius))
+            radius_tag.appendChild(radius_text_node)
+            length_tag = self.root.createElement("length")
+            length_text_node = self.root.createTextNode(str(length))
+            length_tag.appendChild(length_text_node)
+            geom_tag.appendChild(radius_tag)
+            geom_tag.appendChild(length_tag)
+
+            # add geom_tag to geometry
             geometry_tag.appendChild(geom_tag)
             
         elif geometry == 'sphere':
