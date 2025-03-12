@@ -16,7 +16,7 @@
 				<xyz>0 0 1</xyz>
 				<limit>
 					<lower>0.0</lower>
-					<upper>0.2</upper>
+					<upper>0.12</upper>
 					<velocity>1</velocity>
 					<effort>100000</effort>
 				</limit>
@@ -30,7 +30,7 @@
 				<xyz>0 0 1</xyz>
 				<limit>
 					<lower>0.0</lower>
-					<upper>0.2</upper>
+					<upper>0.12</upper>
 					<velocity>1</velocity>
 					<effort>100000</effort>
 				</limit>
@@ -44,7 +44,7 @@
 				<xyz>0 0 1</xyz>
 				<limit>
 					<lower>0.0</lower>
-					<upper>0.2</upper>
+					<upper>0.12</upper>
 					<velocity>1</velocity>
 					<effort>100000</effort>
 				</limit>
@@ -58,7 +58,7 @@
 				<xyz>0 0 1</xyz>
 				<limit>
 					<lower>0.0</lower>
-					<upper>0.2</upper>
+					<upper>0.12</upper>
 					<velocity>1</velocity>
 					<effort>100000</effort>
 				</limit>
@@ -72,7 +72,7 @@
 				<xyz>0 0 1</xyz>
 				<limit>
 					<lower>0.0</lower>
-					<upper>0.2</upper>
+					<upper>0.12</upper>
 					<velocity>1</velocity>
 					<effort>100000</effort>
 				</limit>
@@ -86,7 +86,7 @@
 				<xyz>0 0 1</xyz>
 				<limit>
 					<lower>0.0</lower>
-					<upper>0.2</upper>
+					<upper>0.12</upper>
 					<velocity>1</velocity>
 					<effort>100000</effort>
 				</limit>
@@ -481,13 +481,13 @@
 			</collision>
 		</link>
 		<link name="platform_cyl">
-			<pose>0 0 0.29550000000000004 0 0 0</pose>
+			<pose>0 0 0.28550000000000003 0 0 0</pose>
 			<gravity>0</gravity>
 			<visual name="platform_cyl_visual">
 				<geometry>
 					<cylinder>
 						<radius>0.02</radius>
-						<length>0.049</length>
+						<length>0.028999999999999998</length>
 					</cylinder>
 				</geometry>
 				<material>
@@ -501,13 +501,13 @@
 				<geometry>
 					<cylinder>
 						<radius>0.02</radius>
-						<length>0.049</length>
+						<length>0.028999999999999998</length>
 					</cylinder>
 				</geometry>
 			</collision>
 		</link>
 		<link name="platform_sphere">
-			<pose>0 0 0.3405 0 0 0</pose>
+			<pose>0 0 0.3005 0 0 0</pose>
 			<gravity>0</gravity>
 			<visual name="platform_sphere_visual">
 				<geometry>

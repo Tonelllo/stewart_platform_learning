@@ -15,7 +15,7 @@ platform_mass = 0.0
 
 # Docking element
 platform_cyl_rad = 0.02
-platform_cyl_len = 0.05
+platform_cyl_len = 0.03
 platform_sphere_rad = 0.02
 
 # Define top and bottom balls parameters 
@@ -66,7 +66,7 @@ p_p_joint_vel_limit = str(1)
 p_p_joint_eff_limit = str(100000)
 p_p_joint_day_damping = str(1)
 p_p_joint_axis_lower_limit = "0.0"
-p_p_joint_axis_upper_limit = str(0.20)
+p_p_joint_axis_upper_limit = str(0.12)
 
 for i in range(1,7): # parent, child
     stewart_model.add_joint(f"piston{i}_prismatic_joint",'prismatic' ,f"piston{i}_cylinder_link", f"piston{i}_shaft_linkL", pose="0 0 0 0 0 0", axis_xyz="0 0 1", axis_limit_lower_param=p_p_joint_axis_lower_limit,axis_limit_upper_param=p_p_joint_axis_upper_limit,axis_limit_velocity_param=p_p_joint_vel_limit,axis_limit_effort_param=p_p_joint_eff_limit,axis_dynamics_damping_param=p_p_joint_day_damping)
